@@ -1,0 +1,60 @@
+{
+  "name": "subcast",
+  "private": true,
+  "type": "module",
+  "description": "The podcasts you pay for, in the podcast app you already use: private feeds of your subscriber podcasts on your own Cloudflare account.",
+  "packageManager": "pnpm@10.34.9",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "deploy": "node scripts/deploy.ts",
+    "typecheck": "tsc -p tsconfig.worker.json && tsc -p tsconfig.app.json",
+    "test": "vitest run",
+    "check": "pnpm typecheck && vitest run && vite build",
+    "screenshots": "node scripts/screenshots.ts"
+  },
+  "cloudflare": {
+    "bindings": {
+      "ADMIN_PASSWORD": {
+        "description": "Make up a long password nobody would guess. The admin pages, where you add your accounts and copy your feed addresses, ask for it. Forgot it? Change it in the Worker's Settings, under Variables and Secrets."
+      },
+      "DB": {
+        "description": "Keeps your accounts (credentials encrypted), feeds and episodes. Choose Create new unless you're redeploying this same Worker."
+      }
+    }
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "^5.3.0",
+    "class-variance-authority": "^0.7.1",
+    "cn": "^0.5.2",
+    "hono": "4.13.19",
+    "lucide-react": "^1.74.0",
+    "radix-ui": "^1.8.1",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "sonner": "^2.0.8",
+    "tw-animate-css": "^1.4.0",
+    "vaul": "^1.1.2"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.70.0",
+    "@cloudflare/vitest-plugin": "^1.8.4",
+    "@cloudflare/workers-types": "^5.20261117.1",
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "^22.20.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^6.3.0",
+    "playwright-core": "1.65.1",
+    "shadcn": "^4.23.0",
+    "tailwindcss": "^4.3.5",
+    "typescript": "5.9.3",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0",
+    "wrangler": "4.164.0"
+  },
+  "license": "MIT"
+}
